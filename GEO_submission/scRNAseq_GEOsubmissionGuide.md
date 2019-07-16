@@ -26,15 +26,16 @@
   2. Make a new directory with subdirectories for raw and processed files and copy files to it (tip: use a solid state drive to accellerate transfers)
   3. Generate a text file with filenames followed by the md5sum hash of each file. Combine the md5sums into one or two files. E.g. `for filename in $GEO_DIR/perslab/fastqfiles/*.fastq.gz; do md5sum $filename; done > md5sums.txt`   
   4. Download and complete the [metadata spreadsheet](https://www.ncbi.nlm.nih.gov/geo/info/examples/seq_template_v2.1.xls) template
-    * Series
-      * List the authors who have specifically worked on the data being submitted, as well as the last author(s). No need to list every author.
-      * Copy and paste the relevant method sections from the manuscript
-    * Samples
-      * Insert a column for *each raw file*, e.g. for each .fastq file 
-    * Raw files
-      * Insert a row for *each raw file*, e.g. for each .fastq file
+  * Series
+    * List the authors who have specifically worked on the data being submitted, as well as the last author(s). No need to list every author.
+    * Copy and paste the relevant method sections from the manuscript   
+  * Samples
+    * Insert a column for *each raw file*, e.g. for each .fastq file 
+  * Raw files
+    * Insert a row for *each raw file*, e.g. for each .fastq file
 ### Upload materials
   * Follow the instructions on https://www.ncbi.nlm.nih.gov/geo/info/submissionftp.html
   * Make sure to use tmux or similar to persist the process as it can take days
   * Notify GEO using the [Submit to GEO web form](https://submit.ncbi.nlm.nih.gov/geo/submission/)
+
 
