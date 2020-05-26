@@ -5,7 +5,7 @@
 ## General timeline
 * [FAQ](https://www.ncbi.nlm.nih.gov/geo/info/faq.html#whenaccessions)
 * Depositing your data on GEO is a prerequisite for getting your article published
-* You should allow for *at least* two weeks before the GEO submission is publically available:
+* You should allow for up to two weeks before the GEO submission is publically available:
   * One week for collecting information, preparing and submitting files
   * One week for review of your GEO submission and making changes if necessary
 
@@ -37,8 +37,10 @@
       * file checksum
         * Fill out using the list of checksums generated above
 ### Upload materials
-  * Follow the instructions on https://www.ncbi.nlm.nih.gov/geo/info/submissionftp.html and use the commands in `ftptransfer.txt`. 
+  * Follow the instructions on https://www.ncbi.nlm.nih.gov/geo/info/submissionftp.html. 
+  * avoid sftp as it is very slow
   * Make sure to use tmux or similar to persist the process as it can take days! 
-  * When done, notify GEO using the [Submit to GEO web form](https://submit.ncbi.nlm.nih.gov/geo/submission/)
-
+  * When done 
+      * notify GEO using the [Submit to GEO web form](https://submit.ncbi.nlm.nih.gov/geo/submission/)
+      * delete the copies of the fastq files and move the bash scripts to the permanent project folder for future reference
 
