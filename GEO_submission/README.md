@@ -10,19 +10,22 @@
   * One week for review of your GEO submission and making changes if necessary
 
 ## Step-by-step guide 
+### Check that your data is suitable and within the size limits
+  * Read the [guidelines](https://www.ncbi.nlm.nih.gov/geo/info/seq.html)
+  * Summary statistics such as differential expression should rather be submitted as supplementary tables directly to the journal  
+
 ### Create a GEO account
   * [link](https://www.ncbi.nlm.nih.gov/account/register/?back_url=/geo/submitter/) 
   * The confirmation email may get held up by the KU spam filter 
-### Decide what to submit to GEO and what to submit as supplementary tables
-  * Read the [guidelines](https://www.ncbi.nlm.nih.gov/geo/info/seq.html)
-  * Summary statistics such as differential expression should rather be submitted as supplementary tables directly to the journal  
+
+### Get an overview of what to submit
   * [Example of a scRNA-seq experiment GEO submission](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE130710)
     * raw data: individual fastq files 
     * processed data files: 
        * normalized expression matrix in .csv format
        * metadata: cell barcodes, condition, cluster assignments, and other relevant information for reproducing the analysis
-### Prepare the files for submission
-  
+
+### Prepare the files for submission  
   * Clone this directory (tip: use a solid state drive to accelerate transfers and avoid problems related to network drives!). Make sure there is sufficient space to copy all project fastq files.
   * Edit the variables at the top of `prepFastqFiles.sh` and run it `bash prepFastqFiles.sh` to copy the fastq files and generate lists of filenames and md5 checksums for the metadata spreadsheet. If there is more than one subproject, make a separate copy of `prepFastqFiles.sh` for each.
   
