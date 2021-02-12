@@ -30,43 +30,45 @@
   ```
   (tip: use a solid state drive to accelerate transfers and avoid problems related to network drives!). Make sure there is sufficient space to copy all project fastq files.   
   
-  * Copy all fastqfiles using `cp_fastq.R` (do `Rscript cp_fastq.R -h` for parameters), e.g.
+  * Copy all fastqfiles using `cp_fastq.R` e.g.
   ```
   Rscript cp_fastq.R --dir_out "/projects/jonatan/pub-perslab/21-ludwig-dvc/sn_rna/sn_rna_fastq/" --mkfastq_dir "/data/sc-10x/data-mkfastq/181015-perslab-ap/" --seq_id_regex ".*AHFH7JBGX7$|.*AHJCFHBGX9$|.*BH5GWCDRXX$|.*AHHWKFDMXX$|.*BHHT7MDMXX$"
   ```
+  (do `Rscript cp_fastq.R -h` for parameters) 
   
-* Download and complete the GEO [metadata spreadsheet](https://www.ncbi.nlm.nih.gov/geo/info/examples/seq_template_v2.1.xls) template
-      * SERIES
-        * List the authors who have specifically worked on the data being submitted, as well as the last author(s). No need to list every author.
-        * Copy and paste the relevant method sections from the manuscript   
-      * SAMPLES
-        * Fill out most of the columns manually
-        * For the 'raw file' columns, first prepare a text file (samples_table) with a single named column containing sample names, then use `prep_metadata_samples_section.R` to prepare the raw files colums:
-        ```
-        Rscript prep_metadata_samples_section.R --path_samples_table <path_to_table_of_samples> --path_dir_fastq <path_to_copied_fastqs> --path_table_out <output_xlsx_file_path>
-        ```
-      * PROTOCOLS
-        * Complete manually
-      * DATA PROCESSING PIPELINE
-        * Complete manually
-      * PROCESSED DATA FILES
-        * Use the `md5sum` command to generate the file checksums
-      * RAW FILES
-        * Get the names and md5 checksums by `cd`ing to directory or directories to which you copied the fastq files and doing:
-        ```
-        ls | xargs md5sum &> ../fastq_md5.txt
-        ```
-        * get the read lengths:
-        ```
-        Rscript get_fastq_read_lengths.R --path_dir_fastq <path_to_copied_fastqs>  --path_file_out_readlengths <output_delimited_file_path>
-        ```
-      * PAIRED-END EXPERIMENTS
-        * delete the fields delete 'average insert size' and 'standard deviation'
-        * group the fastqs in sets:
-        ```
-        Rscript prep_metadata_pairedend_section.R --path_samples_table <path_to_table_of_samples> --path_dir_fastq <path_to_copied_fastqs> --path_table_out <output_xlsx_file_path>
-        ```
-        
+  * Download the GEO [metadata spreadsheet](https://www.ncbi.nlm.nih.gov/geo/info/examples/seq_template_v2.1.xls) template and open it
+  * SERIES
+    * List the authors who have specifically worked on the data being submitted, as well as the last author(s). No need to list every author.
+    * Copy and paste the relevant method sections from the manuscript   
+  * SAMPLES
+    * Fill out most of the columns manually
+    * For the 'raw file' columns, first prepare a text file (samples_table) with a single named column containing sample names, then use `prep_metadata_samples_section.R` to prepare the raw files colums:
+    ```
+    Rscript prep_metadata_samples_section.R --path_samples_table <path_to_table_of_samples> --path_dir_fastq <path_to_copied_fastqs> --path_table_out <output_xlsx_file_path>
+    ```
+    (do `Rscript prep_metadata_samples_section.R -h` for parameters) 
+  * PROTOCOLS
+    * Complete manually
+  * DATA PROCESSING PIPELINE
+    * Complete manually
+  * PROCESSED DATA FILES
+    * Use the `md5sum` command to generate the file checksums
+  * RAW FILES
+    * Get the names and md5 checksums by `cd`ing to directory or directories to which you copied the fastq files and doing:
+    ```
+    ls | xargs md5sum &> ../fastq_md5.txt
+    ```
+    * get the read lengths:
+    ```
+    Rscript get_fastq_read_lengths.R --path_dir_fastq <path_to_copied_fastqs>  --path_file_out_readlengths <output_delimited_file_path>
+    ```
+  * PAIRED-END EXPERIMENTS
+    * delete the fields delete 'average insert size' and 'standard deviation'
+    * group the fastqs in sets:
+    ```
+    Rscript prep_metadata_pairedend_section.R --path_samples_table <path_to_table_of_samples> --path_dir_fastq <path_to_copied_fastqs> --path_table_out <output_xlsx_file_path>
+    ```
+      
 ### Upload materials
   * Follow the instructions on https://www.ncbi.nlm.nih.gov/geo/info/submissionftp.html. 
     * Make sure to use tmux or similar to persist the process as it can take days! 
