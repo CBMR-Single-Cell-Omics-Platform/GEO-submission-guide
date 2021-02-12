@@ -28,13 +28,6 @@ seq_ids <- opt$seq_ids
 seq_id_regex <- opt$seq_id_regex
 sample_regex <- opt$sample_regex
 
-#' dir_out = "/scratch/rkm916/21-ludwig-dvc/sn_rna/fastq"
-#' mkfastq_dir = "/data/sc-10x/data-mkfastq/181015-perslab-ap/"
-#' #seq_ids = c("181015_NS500606_0210_AHFH7JBGX7", "181218_NS500606_0237_AHJCFHBGX9", "181228_A00642_0009_BH5GWCDRXX", "190222_A00642_0011_AHHWKFDMXX" "190222_A00642_0012_BHHT7MDMXX", "190225_A00642_0013_AH72N5DRXX")
-#' seq_ids = NULL
-#' seq_id_regex = ".*X7$|.*X9$|.*XX$"
-#' sample_regex = NULL
-
 # check inputs
 if (!is.null(seq_ids) & !is.null(seq_id_regex)) {
   stop("!is.null(seq_ids) & !is.null(seq_id_regex)")

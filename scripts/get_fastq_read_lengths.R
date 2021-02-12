@@ -1,9 +1,18 @@
 #!/tools/R/4.0.2/bin/R
 
 library("data.table")
+library("optparse")
 
-path_dir_fastq = "/projects/jonatan/pub-perslab/21-ludwig-dvc/sn_atac/sn_atac_fastq/"
-path_file_out_readlengths = "/projects/jonatan/pub-perslab/21-ludwig-dvc/sn_atac/sn_atac_read_lengths.csv"
+option_list <- list(
+  make_option("--path_dir_fastq", type="character",
+              help = "directory containing all fastq files"),
+  make_option("--path_file_out_readlengths", type="character",
+              help = "path for output"),
+)
+
+opt <- parse_args(OptionParser(option_list=option_list))
+path_dir_fastq <- opt$path_dir_fastq
+path_table_out <- opt$path_table_out
 
 list_readlength <- sapply(dir(path_dir_fastq), function(filename) {
   nchar(readLines(con = gzfile(paste0(path_dir_fastq,filename)), n = 2)[2])

@@ -1,10 +1,10 @@
-Transferring files to the SRA with Aspera
+# Transferring files to the SRA with Aspera
 
 If a data set exceeds the file size limit (XXXGb) for transfers to GEO through the usual FTP, it is necessary to transfer to the Short Read Archive (SRA) using the Aspera tool.
 
 Write an email to sra@ncbi.nlm.nih.gov with the header "Requesting Aspera private SSH key file for GEO Submission" and request an SSH key file for use with Aspera for a GEO submission. They will send you the instructions below.
 
-We (Piotr) already has the installation files ready to install ascp for a given user on yggdrasil/nidhogg.
+Perslab note: We (Piotr) already has the installation files ready to install ascp for a given user on the server.
 
 1. Files should have relatively unique file names. 
 
