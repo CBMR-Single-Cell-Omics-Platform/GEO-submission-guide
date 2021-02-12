@@ -62,14 +62,15 @@
     ```
     Rscript get_fastq_read_lengths.R --path_dir_fastq <path_to_copied_fastqs>  --path_file_out_readlengths <output_delimited_file_path>
     ```
+    (do `Rscript get_fastq_read_lengths.R -h` for parameters) 
   * PAIRED-END EXPERIMENTS
     * delete the fields delete 'average insert size' and 'standard deviation'
     * group the fastqs in sets:
     ```
     Rscript prep_metadata_pairedend_section.R --path_samples_table <path_to_table_of_samples> --path_dir_fastq <path_to_copied_fastqs> --path_table_out <output_xlsx_file_path>
     ```
-      
-### Upload materials
+    (do `prep_metadata_pairedend_section.R -h` for parameters)  
+### Transfer the data
   * Follow the instructions on https://www.ncbi.nlm.nih.gov/geo/info/submissionftp.html. 
     * Make sure to use tmux or similar to persist the process as it can take days! 
     * if the _raw_ files exceed the [GEO size limits]() they need to be uploaded directly to the Short Read Archive. See ascp_instructions.md.
