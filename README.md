@@ -1,16 +1,20 @@
-# Guidelines and helper scripts for submitting NGS data to GEO / SRA
+# Tips and scripts for submitting NGS data to GEO / SRA
+
 
 ## Timeline
 * Depositing your data on GEO is almost always a prerequisite for getting your article published, so this should be a top priority after the paper is accepted
-* You should allow for up to two weeks before the GEO submission is publicly available:
-  * One week for collecting information, preparing and transferring files
-  * One week for review of your GEO submission and making changes if necessary
+* Allow for up to two weeks before the GEO submission is publicly available:
+  * One week for collecting, preparing and transferring files
+  * One week for review by GEO and to make any changes they might ask for
 * See also the GEO [FAQ](https://www.ncbi.nlm.nih.gov/geo/info/faq.html#whenaccessions)
 
+
 ## Quick start
+
 ### Create a GEO account
+
   * [link](https://www.ncbi.nlm.nih.gov/account/register/?back_url=/geo/submitter/) 
-  * The confirmation email may get held up by the KU spam filter 
+  (The confirmation email may get held up by the spam filter, so consider using your personal email!)
 ### Decide what to submit to GEO and what to submit as supplementary tables
   * Read the [guidelines](https://www.ncbi.nlm.nih.gov/geo/info/seq.html)
   * Summary statistics such as differential expression should rather be submitted as supplementary tables directly to the journal  
@@ -32,9 +36,9 @@
   
   * Copy all fastqfiles using `./scripts/cp_fastq.R` e.g.
   ```
-  Rscript ./scripts/cp_fastq.R --dir_out "/projects/jonatan/pub-perslab/21-ludwig-dvc/sn_rna/sn_rna_fastq/" --mkfastq_dir "/data/sc-10x/data-mkfastq/181015-perslab-ap/" --seq_id_regex ".*AHFH7JBGX7$|.*AHJCFHBGX9$|.*BH5GWCDRXX$|.*AHHWKFDMXX$|.*BHHT7MDMXX$"
+  Rscript ./scripts/cp_fastq.R --dir_out "<path_to_copy_fastqs_to>" --mkfastq_dir "<top level fastqdir>" --seq_id_regex "<R regex for matching sequencing runs>" --sample_regex "<R regex for matching sample names>"
   ```
-  (do `Rscript ./scripts/cp_fastq.R -h` for parameters) 
+  (do `Rscript ./scripts/cp_fastq.R -h` for info on parameters) 
   
   * Download the GEO [metadata spreadsheet](https://www.ncbi.nlm.nih.gov/geo/info/examples/seq_template_v2.1.xls) template and open it
   * SERIES
@@ -44,9 +48,9 @@
     * Fill out most of the columns manually
     * For the 'raw file' columns, first prepare a text file (samples_table) with a single named column containing sample names, then use `prep_metadata_samples_section.R` to prepare the raw files colums:
     ```
-    Rscript ./scripts/prep_metadata_samples_section.R --path_samples_table <path_to_table_of_samples> --path_dir_fastq <path_to_copied_fastqs> --path_table_out <output_xlsx_file_path>
+    Rscript ./scripts/prep_metadata_samples_section.R --path_samples_table "<path_to_table_of_samples>" --path_dir_fastq "<path_to_copied_fastqs>" --path_table_out "<output_xlsx_file_path>""
     ```
-    (do `Rscript ./scripts/prep_metadata_samples_section.R -h` for parameters) 
+    (do `Rscript ./scripts/prep_metadata_samples_section.R -h` for info on parameters) 
   * PROTOCOLS
     * Complete manually
   * DATA PROCESSING PIPELINE
@@ -60,16 +64,17 @@
     ```
     * get the read lengths:
     ```
-    Rscript ./scripts/get_fastq_read_lengths.R --path_dir_fastq <path_to_copied_fastqs>  --path_file_out_readlengths <output_delimited_file_path>
+    Rscript ./scripts/get_fastq_read_lengths.R --path_dir_fastq "<path_to_copied_fastqs>" --path_file_out_readlengths "<output_delimited_file_path>"
     ```
     (do `Rscript ./scripts/get_fastq_read_lengths.R -h` for parameters) 
   * PAIRED-END EXPERIMENTS
     * delete the fields delete 'average insert size' and 'standard deviation'
     * group the fastqs in sets:
     ```
-    Rscript ./scripts/prep_metadata_pairedend_section.R --path_samples_table <path_to_table_of_samples> --path_dir_fastq <path_to_copied_fastqs> --path_table_out <output_xlsx_file_path>
+    Rscript ./scripts/prep_metadata_pairedend_section.R --path_samples_table "<path_to_table_of_samples>" --path_dir_fastq "<path_to_copied_fastqs>" --path_table_out "<output_xlsx_file_path>"
     ```
-    (do `Rscript ./scripts/prep_metadata_pairedend_section.R -h` for parameters)  
+    (do `Rscript ./scripts/prep_metadata_pairedend_section.R -h` for info on parameters)  
+
 ### Transfer the data
   * Follow the instructions on https://www.ncbi.nlm.nih.gov/geo/info/submissionftp.html. 
     * Make sure to use tmux or similar to persist the process as it can take days! 
