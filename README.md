@@ -11,11 +11,11 @@
 
 ## Quick start
 
-1. Create a GEO account
+### 1. Create a GEO account
 
   * [link](https://www.ncbi.nlm.nih.gov/account/register/?back_url=/geo/submitter/) 
   (The confirmation email may get held up by the spam filter, so consider using your personal email!)
-2. Decide what to submit to GEO and what to submit as supplementary tables
+### 2. Decide what to submit to GEO and what to submit as supplementary tables
   * Read the [guidelines](https://www.ncbi.nlm.nih.gov/geo/info/seq.html)
   * Summary statistics such as differential expression should rather be submitted as supplementary tables directly to the journal  
   * [Example of a scRNA-seq experiment GEO submission](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE130710)
@@ -25,7 +25,7 @@
        * normalized count matrix in delimited format (e.g. .csv.gz)
        * metadata: cell barcodes, condition, cluster assignments, and other relevant information for reproducing the analysis
   
-3. Prepare the files for submission
+### 3. Prepare the files for submission
   * Make sure that filenames are unique.
   * Verify that the combined file size is within 1TB. If over, [contact NCBI](geo@ncbi.nlm.nih.gov). The solution will likely be to submit _raw_ files directly to the Short Read Archive. See guidelines for SRA submissins [here](https://github.com/CBMR-Single-Cell-Omics-Platform/GEO-submission-guide/blob/master/ascp_instructions.md). 
   
@@ -77,7 +77,7 @@
     ```
     (do `Rscript ./scripts/prep_metadata_pairedend_section.R -h` for info on parameters)  
 
-### Transfer the data
+### 4. Transfer the data
   * Follow the instructions on https://www.ncbi.nlm.nih.gov/geo/info/submissionftp.html. 
     * User a terminal multiplexer like tmux to persist the process.
   * When done, notify GEO using the [Submit to GEO web form](https://submit.ncbi.nlm.nih.gov/geo/submission/)
