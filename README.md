@@ -11,11 +11,11 @@
 
 ## Quick start
 
-### Create a GEO account
+1. Create a GEO account
 
   * [link](https://www.ncbi.nlm.nih.gov/account/register/?back_url=/geo/submitter/) 
   (The confirmation email may get held up by the spam filter, so consider using your personal email!)
-### Decide what to submit to GEO and what to submit as supplementary tables
+2. Decide what to submit to GEO and what to submit as supplementary tables
   * Read the [guidelines](https://www.ncbi.nlm.nih.gov/geo/info/seq.html)
   * Summary statistics such as differential expression should rather be submitted as supplementary tables directly to the journal  
   * [Example of a scRNA-seq experiment GEO submission](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE130710)
@@ -25,7 +25,9 @@
        * normalized count matrix in delimited format (e.g. .csv.gz)
        * metadata: cell barcodes, condition, cluster assignments, and other relevant information for reproducing the analysis
   
-### Prepare the files for submission
+3. Prepare the files for submission
+  * Make sure that filenames are unique.
+  * Verify that the combined file size is within 1TB. If over, [contact NCBI](geo@ncbi.nlm.nih.gov). The solution will likely be to submit _raw_ files directly to the Short Read Archive. See guidelines for SRA submissins [here](https://github.com/CBMR-Single-Cell-Omics-Platform/GEO-submission-guide/blob/master/ascp_instructions.md). 
   
   * Clone this directory 
   ``` 
@@ -34,12 +36,12 @@
   ```
   (tip: use a solid state drive to accelerate transfers and avoid problems related to network drives!). Make sure there is sufficient space to copy all project fastq files.   
   
-  * Copy all fastqfiles using `./scripts/cp_fastq.R` e.g.
+  * Copy fastqfiles using `./scripts/cp_fastq.R` e.g.
   ```
   Rscript ./scripts/cp_fastq.R --dir_out "<path_to_copy_fastqs_to>" --mkfastq_dir "<top level fastqdir>" --seq_id_regex "<R regex for matching sequencing runs>" --sample_regex "<R regex for matching sample names>"
   ```
   (do `Rscript ./scripts/cp_fastq.R -h` for info on parameters) 
-  
+  * double-check that the right files were copied (e.g. some sequencing runs may have been discarded).
   * Download the GEO [metadata spreadsheet](https://www.ncbi.nlm.nih.gov/geo/info/examples/seq_template_v2.1.xls) template and open it
   * SERIES
     * List the authors who have specifically worked on the data being submitted, as well as the last author(s). No need to list every author.
@@ -77,7 +79,6 @@
 
 ### Transfer the data
   * Follow the instructions on https://www.ncbi.nlm.nih.gov/geo/info/submissionftp.html. 
-    * Make sure to use tmux or similar to persist the process as it can take days! 
-    * if the _raw_ files exceed the [GEO size limits]() they need to be uploaded directly to the Short Read Archive. See ascp_instructions.md.
+    * User a terminal multiplexer like tmux to persist the process.
   * When done, notify GEO using the [Submit to GEO web form](https://submit.ncbi.nlm.nih.gov/geo/submission/)
 
